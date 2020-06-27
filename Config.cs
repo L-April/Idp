@@ -56,7 +56,33 @@ namespace Idp
                      IdentityServerConstants.StandardScopes.Email,
                      IdentityServerConstants.StandardScopes.Address,
                      IdentityServerConstants.StandardScopes.Phone,}
+                },
+                new Client 
+                {
+                    ClientId="mvc client",
+                    ClientName="ASP.NET Core MVC Client",
+                    AllowedGrantTypes=GrantTypes.CodeAndClientCredentials,//允许两种授权方式
+                    ClientSecrets={new Secret("mvc secret".Sha256()) },
+                    RedirectUris={"http://localhost:5002/signin-oidc"},
+                    FrontChannelLogoutUri="http://localhost:5002/signout-oidc",
+                    PostLogoutRedirectUris={"http://localhost:5002/signout-callback-oidc"},
+                    AlwaysIncludeUserClaimsInIdToken=true,
+                    AllowOfflineAccess=true,//offline_access  允许离线访问，是否用刷新token//用于允许refreshToken
+                    AllowedScopes =
+                    {
+
+                        "scope1",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Address,
+
+                        IdentityServerConstants.StandardScopes.Phone,
+                        
+                    }
                 }
+
 
                 //// interactive client using code flow + pkce
                 //new Client
